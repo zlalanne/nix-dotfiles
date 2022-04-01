@@ -25,6 +25,7 @@
     pkgs.htop
     pkgs.rsync
     pkgs.ripgrep
+    pkgs.diff-so-fancy
   ];
 
   home.sessionVariables = {
@@ -71,6 +72,9 @@
       enable = true;
       plugins = ["git" "rsync" "extract" "ripgrep"];
       theme = "ys";
+      extraConfig = ''
+        COMPLETION_WAITING_DOTS="true"
+      '';
     };
   };
 
@@ -80,6 +84,8 @@
     userEmail = "zack.lalanne@gmail.com";
     extraConfig = {
       color.ui = true;
+      core.pager = "diff-so-fancy | less --tabs=4 -RFX";
+      interactive.diffFilter = "diff-so-fancy --patch";
     };
   };
 
