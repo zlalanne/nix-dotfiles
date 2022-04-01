@@ -69,7 +69,7 @@
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "rsync"];
+      plugins = ["git" "rsync" "extract" "ripgrep"];
       theme = "ys";
     };
   };
