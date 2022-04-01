@@ -21,7 +21,10 @@
 
   home.packages = [
     # Command line utilities
+    pkgs.aspell
     pkgs.htop
+    pkgs.rsync
+
     # Fonts
     #pkgs.hack-font
   ];
@@ -46,11 +49,17 @@
   programs.kitty = {
     enable = true;
     theme = "Solarized Dark - Patched";
+    #theme = "Solarized Dark";
     font = {
       name = "Hack";
       package = pkgs.hack-font;
     };
     extraConfig = "enable_audio_bell no";
+  };
+
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
   };
 
   programs.fzf = {
@@ -63,7 +72,7 @@
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = ["git"];
+      plugins = ["git" "rsync"];
       theme = "ys";
     };
   };
@@ -88,5 +97,9 @@
       vim-gitgutter
       vim-airline
     ];
+    extraConfig = ''
+      syntax enable
+      set background=dark
+    '';
   };
 }
