@@ -24,9 +24,7 @@
     pkgs.aspell
     pkgs.htop
     pkgs.rsync
-
-    # Fonts
-    #pkgs.hack-font
+    pkgs.ripgrep
   ];
 
   home.sessionVariables = {
@@ -49,7 +47,6 @@
   programs.kitty = {
     enable = true;
     theme = "Solarized Dark - Patched";
-    #theme = "Solarized Dark";
     font = {
       name = "Hack";
       package = pkgs.hack-font;
@@ -94,12 +91,25 @@
       vim-nix
 
       # UI
+      vim-colors-solarized
       vim-gitgutter
       vim-airline
+      vim-airline-themes
     ];
     extraConfig = ''
-      syntax enable
+      """"""""""""""""""""""
+      " UI
+      """"""""""""""""""""""
       set background=dark
+
+      " Set to transparent background to work better with kitty theme
+      let g:solarized_termtrans=1
+      colorscheme solarized
+
+      let g:airline_theme='solarized'
+
+      " Set background color of git gutter correctly
+      highlight! link SignColumn LineNr
     '';
   };
 }
