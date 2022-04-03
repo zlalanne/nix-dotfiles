@@ -71,11 +71,15 @@
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "rsync" "extract" "ripgrep"];
+      plugins = ["git" "rsync" "extract" "ripgrep" "docker"];
       theme = "ys";
       extraConfig = ''
         COMPLETION_WAITING_DOTS="true"
       '';
+    };
+    shellAliases = {
+      hme = "home-manager edit";
+      hms = "home-manager switch";
     };
   };
 
@@ -104,6 +108,12 @@
       vim-airline-themes
     ];
     extraConfig = ''
+      """"""""""""""""""""""
+      " Keybindings
+      """"""""""""""""""""""
+      let mapleader = " "
+
+
       """"""""""""""""""""""
       " UI
       """"""""""""""""""""""
