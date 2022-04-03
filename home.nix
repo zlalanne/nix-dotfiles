@@ -26,6 +26,7 @@
     pkgs.rsync
     pkgs.ripgrep
     pkgs.diff-so-fancy
+    pkgs.less
   ];
 
   home.sessionVariables = {
@@ -84,7 +85,7 @@
     userEmail = "zack.lalanne@gmail.com";
     extraConfig = {
       color.ui = true;
-      core.pager = "${pkgs.diff-so-fancy}/bin/diff-so-fancy | less --tabs=4 -RFX";
+      core.pager = "${pkgs.diff-so-fancy}/bin/diff-so-fancy | ${pkgs.less}/bin/less --tabs=4 -RFX";
       interactive.diffFilter = "${pkgs.diff-so-fancy}/bin/diff-so-fancy --patch";
     };
   };
