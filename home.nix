@@ -99,6 +99,7 @@
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
       # Syntax / Language Support
+      nvim-lspconfig
       vim-nix
 
       # UI
@@ -107,7 +108,16 @@
       vim-airline
       vim-airline-themes
     ];
+    extraPackages = [ pkgs.rnix-lsp ];
     extraConfig = ''
+      if executable('rnix-lsp')
+        au User lsp_setup call lsp#register_server({
+        \ 'name': 'rnix-lsp',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'rnix-lsp']},
+        \ 'whitelist': ['nix'],
+        \ })
+      endif
+
       """"""""""""""""""""""
       " Keybindings
       """"""""""""""""""""""
