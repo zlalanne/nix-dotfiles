@@ -80,6 +80,7 @@
     shellAliases = {
       hme = "home-manager edit";
       hms = "home-manager switch";
+      hmn = "home-manager news";
     };
   };
 
