@@ -1,5 +1,19 @@
 { config, pkgs, ... }:
-
+let 
+  # Python script to print terminal colors to screen
+  terminal_colors = pkgs.stdenv.mkDerivation {
+    name = "terminal_colors";
+    buildInputs = [
+      pkgs.python3
+    ];
+    unpackPhase = "true";
+    installPhase = ''
+      mkdir -p $out/bin
+      cp ${./src/terminal_colors.py} $out/bin/terminal_colors
+      chmod +x $out/bin/terminal_colors
+    '';
+  };
+in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -27,6 +41,17 @@
     pkgs.ripgrep
     pkgs.diff-so-fancy
     pkgs.less
+
+    terminal_colors
+
+    # Development
+    pkgs.esphome
+
+    pkgs.emacs
+
+    # GUI Tools
+    pkgs.obsidian
+    pkgs.element-desktop
   ];
 
   home.sessionVariables = {
